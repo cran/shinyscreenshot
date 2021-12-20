@@ -10,6 +10,9 @@ screenshotButton(
   id = "",
   scale = 1,
   timer = 0,
+  download = TRUE,
+  server_dir = NULL,
+  ns = shiny::NS(NULL),
   ...
 )
 }
@@ -31,6 +34,14 @@ image that's twice the height and width (and a larger file size).}
 \item{timer}{Number of seconds to wait before taking the screenshot. Default is 0, which
 takes a screenshot immediately.}
 
+\item{download}{If \code{TRUE} (default), download the screenshot image to the user's computer.
+If \code{FALSE}, the image isn't downloaded to the user, and a \code{server_dir} should be specified.}
+
+\item{server_dir}{Directory on the server where the screenshot image should be saved. See
+'Saving to the server' section below.}
+
+\item{ns}{The \code{\link[shiny:NS]{namespace}} object of the current module if inside a Shiny module.}
+
 \item{...}{Any other parameters that should be passed along to the \code{\link[shiny:actionButton]{shiny::actionButton()}}.}
 }
 \description{
@@ -41,6 +52,20 @@ PNG image.\cr\cr
 This function gets called from the UI portion of a Shiny app, unlike
 \code{\link[=screenshot]{screenshot()}} which is similar but gets called from the server.
 }
+\section{Saving to the server}{
+
+By default, the image is downloaded to the user's computer and is not stored on the server
+running the Shiny app. If a \code{server_dir} is provided, then the image is stored to this
+directory on the server. Note that only the directory should be specified, not the file name.
+
+If saving the image is successful, \code{input$shinyscreenshot} will contain the full path to
+the image. If not, \code{input$shinyscreenshot} will contain an empty string (\code{""}).
+
+The directory must exist and be writeable. If \code{NULL}, the image is not saved to the server.
+If a relative path is provided, it is relative to the Shiny app's working directory. For
+example, \code{server_dir="."} will save the image in the same directory that the Shiny app is in.
+}
+
 \examples{
 if (interactive()) {
   library(shiny)
@@ -61,4 +86,7 @@ if (interactive()) {
     }
   )
 }
+}
+\seealso{
+\code{\link[=screenshot]{screenshot()}}
 }

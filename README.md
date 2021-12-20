@@ -7,11 +7,13 @@
     <a href="https://daattali.com/shiny/shinyscreenshot-demo/">Demo</a>
     &middot;
     by <a href="https://deanattali.com">Dean Attali</a>
+    &middot;
+    <a href="https://www.youtube.com/watch?v=fsd81mnxtNs">10-min Tutorial</a>
   </h4>
 
   <p align="center">
-    <a href="https://travis-ci.org/daattali/shinyscreenshot">
-      <img src="https://travis-ci.org/daattali/shinyscreenshot.svg?branch=master" alt="Build Status" />
+    <a href="https://github.com/daattali/shinyscreenshot/actions">
+      <img src="https://github.com/daattali/shinyscreenshot/workflows/R-CMD-check/badge.svg" alt="R Build Status" />
     </a>
     <a href="https://cran.r-project.org/package=shinyscreenshot">
       <img src="https://www.r-pkg.org/badges/version/shinyscreenshot" alt="CRAN version" />
@@ -22,7 +24,9 @@
 
 ---
 
-{shinyscreenshot} allows you to capture screenshots of entire pages or parts of pages in Shiny apps. Can be used to capture the *current* state of a Shiny app, including interactive widgets (such as plotly, timevis, maps, etc). The captured image is automatically downloaded as a PNG image.
+<img src="inst/img/hex.png" width="170" align="right"/>
+
+{shinyscreenshot} allows you to capture screenshots of entire pages or parts of pages in Shiny apps. Can be used to capture the *current* state of a Shiny app, including interactive widgets (such as plotly, timevis, maps, etc). The captured image is automatically downloaded as a PNG image, or it can be saved on the server.
 
 **Need Shiny help? [I’m available for
 consulting](https://attalitech.com/).**<br/> **If you find {shinyscreenshot}
@@ -40,20 +44,33 @@ work](https://github.com/sponsors/daattali) to unlock rewards\! ❤**
 
 </p>
 
+> This package is part of a larger ecosystem of packages with a shared vision: solving common Shiny issues and improving Shiny apps with minimal effort, minimal code changes, and straightforward documentation. Other packages for your Shiny apps:
+
+| Package | Description | Demo |
+|---|---|---|
+| [shinyjs](https://deanattali.com/shinyjs/) | 💡 Easily improve the user experience of your Shiny apps in seconds | [🔗](https://deanattali.com/shinyjs/overview#demo) |
+| [shinyalert](https://github.com/daattali/shinyalert) | 🗯️ Easily create pretty popup messages (modals) in Shiny | [🔗](https://daattali.com/shiny/shinyalert-demo/) |
+| [timevis](https://github.com/daattali/timevis/) | 📅 Create interactive timeline visualizations in R | [🔗](https://daattali.com/shiny/timevis-demo/) |
+| [shinycssloaders](https://github.com/daattali/shinycssloaders/) | ⌛ Add loading animations to a Shiny output while it's recalculating | [🔗](https://daattali.com/shiny/shinycssloaders-demo/) |
+| [colourpicker](https://github.com/daattali/colourpicker/) | 🎨 A colour picker tool for Shiny and for selecting colours in plots | [🔗](https://daattali.com/shiny/colourInput/) |
+| [shinybrowser](https://github.com/daattali/shinybrowser/) | 🌐 Find out information about a user's web browser in Shiny apps | [🔗](https://daattali.com/shiny/shinybrowser-demo/) |
+| [shinydisconnect](https://github.com/daattali/shinydisconnect/) | 🔌 Show a nice message when a Shiny app disconnects or errors | [🔗](https://daattali.com/shiny/shinydisconnect-demo/) |
+| [shinyforms](https://github.com/daattali/shinyforms/) | 📝 Easily create questionnaire-type forms with Shiny | WIP |
+
 # Table of contents
 
   - [How to use](#usage)
+  - [Sponsors 🏆](#sponsors)
   - [Screenshot button](#screenshotbutton)
   - [Features](#features)
   - [Installation](#install)
   - [Motivation](#motivation)
   - [Browser support and limitations](#limitations)
   - [Similar packages](#similar)
-  - [Sponsors 🏆](#sponsors)
 
 <h2 id="usage">How to use</h2>
 
-Using {shinyscreenshot} is as easy as it gets. When you want to take a screenshot, simply call `screenshot()` and a full-page screenshot will be taken and downloaded as a PNG image. [Try it for yourself!](https://daattali.com/shiny/shinyscreenshot-demo/)
+Using {shinyscreenshot} is as easy as it gets. When you want to take a screenshot, simply call `screenshot()` and a full-page screenshot will be taken and downloaded as a PNG image. **[Try it for yourself](https://daattali.com/shiny/shinyscreenshot-demo/) or [watch a short tutorial](https://www.youtube.com/watch?v=fsd81mnxtNs)!**
 
 It's so simple that an example isn't needed, but here's one anyway:
 
@@ -73,6 +90,13 @@ It's so simple that an example isn't needed, but here's one anyway:
     
     shinyApp(ui, server)
 
+<h2 id="sponsors">Sponsors 🏆</h2>
+
+- [Eric Nantz](https://r-podcast.org/)
+
+[Become a sponsor for
+{shinyscreenshot}\!](https://github.com/sponsors/daattali/sponsorships?tier_id=39856)
+
 <h2 id="screenshotbutton">Screenshot button</h2>
 
 The `screenshot()` function can be called any time inside the server portion of a Shiny app. A very common case is to take a screenshot after clicking a button. That case is so common that there's a function for it: `screenshotButton()`. It accepts all the same parameters as `screenshot()`, but instead of calling it in the server, you call it in the UI. 
@@ -88,6 +112,8 @@ The `screenshot()` function can be called any time inside the server portion of 
 - **Timer:** Usually you want the screenshot to be taken immediately, but sometimes you may want to tell Shiny to take a screenshot in, for example, 3 seconds from now. That can be done using `screenshot(timer=3)`.
 
 - **File name:** You can choose the name of the downloaded file using the `filename` parameter.
+
+- **Saving on the server:** The image screenshot can also be stored on the server using the `server_dir` parameter. If the save is successful, `input$shinyscreenshot` will store the path of the image.
 
 - **Module support:** As an alternative to the `selector` argument, you can also use the `id` argument. For example, instead of using `screenshot(selector="#myplot")`, you could use `screenshot(id="myplot")`. The advantage with using an ID directly is that the `id` parameter is module-aware, so even if you're taking a screenshot inside a Shiny module, you don't need to worry about namespacing.
 
@@ -120,9 +146,6 @@ As mentioned above, the libraries used by {shinyscreenshot} do have limitations 
 
 RStudio's [{webshot}](https://github.com/wch/webshot) package is also similar, but serves a very different purpose. {webshot} is used to take screenshots of any website (including Shiny apps), but you cannot interact with the page in order to take a screenshot at a specific time.
 
-<h2 id="sponsors">Sponsors 🏆</h2>
+<h2>Credits</h2>
 
-> There are no sponsors yet
-
-[Become the first sponsor for
-{shinyscreenshot}\!](https://github.com/sponsors/daattali/sponsorships?tier_id=39856)
+Logo design by [Alfredo Hernández](https://aldomann.com/).
