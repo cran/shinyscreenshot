@@ -1,25 +1,21 @@
+<h3 align="center">shinyscreenshot</h3>
+<h4 align="center">
+  📷 Capture screenshots of entire pages or parts of pages in Shiny apps
+  <br><br>
+  <a href="https://daattali.com/shiny/shinyscreenshot-demo/">Demo</a>
+  &middot;
+  by <a href="https://deanattali.com">Dean Attali</a>
+  &middot;
+  <a href="https://www.youtube.com/watch?v=fsd81mnxtNs">10-min Tutorial</a>
+</h4>
+
 <p align="center">
-  <h3 align="center">shinyscreenshot</h3>
-
-  <h4 align="center">
-    Capture screenshots of entire pages or parts of pages in Shiny apps
-    <br><br>
-    <a href="https://daattali.com/shiny/shinyscreenshot-demo/">Demo</a>
-    &middot;
-    by <a href="https://deanattali.com">Dean Attali</a>
-    &middot;
-    <a href="https://www.youtube.com/watch?v=fsd81mnxtNs">10-min Tutorial</a>
-  </h4>
-
-  <p align="center">
-    <a href="https://github.com/daattali/shinyscreenshot/actions">
-      <img src="https://github.com/daattali/shinyscreenshot/workflows/R-CMD-check/badge.svg" alt="R Build Status" />
-    </a>
-    <a href="https://cran.r-project.org/package=shinyscreenshot">
-      <img src="https://www.r-pkg.org/badges/version/shinyscreenshot" alt="CRAN version" />
-    </a>
-  </p>
-
+  <a href="https://github.com/daattali/shinyscreenshot/actions">
+    <img src="https://github.com/daattali/shinyscreenshot/workflows/R-CMD-check/badge.svg" alt="R Build Status" />
+  </a>
+  <a href="https://cran.r-project.org/package=shinyscreenshot">
+    <img src="https://www.r-pkg.org/badges/version/shinyscreenshot" alt="CRAN version" />
+  </a>
 </p>
 
 ---
@@ -28,23 +24,19 @@
 
 {shinyscreenshot} allows you to capture screenshots of entire pages or parts of pages in Shiny apps. Can be used to capture the *current* state of a Shiny app, including interactive widgets (such as plotly, timevis, maps, etc). The captured image is automatically downloaded as a PNG image, or it can be saved on the server.
 
-**Need Shiny help? [I’m available for
-consulting](https://attalitech.com/).**<br/> **If you find {shinyscreenshot}
-useful, please consider [supporting my
-work](https://github.com/sponsors/daattali) to unlock rewards\! ❤**
+**Need Shiny help? [I'm available for consulting](https://attalitech.com/).**<br/>
+**If you find {shinyscreenshot} useful, please consider [supporting my work](https://github.com/sponsors/daattali)! ❤**
 
 <p align="center">
-
-<a style="display: inline-block;" href="https://github.com/sponsors/daattali">
-<img height="35" src="https://i.imgur.com/034B8vq.png" /> </a>
-
-<a style="display: inline-block;" href="https://paypal.me/daattali">
-<img height="35" src="https://camo.githubusercontent.com/0e9e5cac101f7093336b4589c380ab5dcfdcbab0/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f74776f6c66736f6e2f70617970616c2d6769746875622d627574746f6e40312e302e302f646973742f627574746f6e2e737667" />
-</a>
-
+  <a style="display: inline-block;" href="https://github.com/sponsors/daattali">
+    <img height="35" src="https://i.imgur.com/034B8vq.png" />
+  </a>
+  <a style="display: inline-block;" href="https://paypal.me/daattali">
+    <img height="35" src="https://camo.githubusercontent.com/0e9e5cac101f7093336b4589c380ab5dcfdcbab0/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f74776f6c66736f6e2f70617970616c2d6769746875622d627574746f6e40312e302e302f646973742f627574746f6e2e737667" />
+  </a>
 </p>
 
-> This package is part of a larger ecosystem of packages with a shared vision: solving common Shiny issues and improving Shiny apps with minimal effort, minimal code changes, and straightforward documentation. Other packages for your Shiny apps:
+> This package is part of a larger ecosystem of packages with a shared vision: solving common Shiny issues and improving Shiny apps with minimal effort, minimal code changes, and clear documentation. Other packages for your Shiny apps:
 
 | Package | Description | Demo |
 |---|---|---|
@@ -55,6 +47,8 @@ work](https://github.com/sponsors/daattali) to unlock rewards\! ❤**
 | [colourpicker](https://github.com/daattali/colourpicker/) | 🎨 A colour picker tool for Shiny and for selecting colours in plots | [🔗](https://daattali.com/shiny/colourInput/) |
 | [shinybrowser](https://github.com/daattali/shinybrowser/) | 🌐 Find out information about a user's web browser in Shiny apps | [🔗](https://daattali.com/shiny/shinybrowser-demo/) |
 | [shinydisconnect](https://github.com/daattali/shinydisconnect/) | 🔌 Show a nice message when a Shiny app disconnects or errors | [🔗](https://daattali.com/shiny/shinydisconnect-demo/) |
+| [shinytip](https://github.com/daattali/shinytip/) | 💬 Simple flexible tooltips for Shiny apps | WIP |
+| [shinymixpanel](https://github.com/daattali/shinymixpanel/) | 🔍 Track user interactions with Mixpanel in Shiny apps or R scripts | WIP |
 | [shinyforms](https://github.com/daattali/shinyforms/) | 📝 Easily create questionnaire-type forms with Shiny | WIP |
 
 # Table of contents
@@ -63,6 +57,7 @@ work](https://github.com/sponsors/daattali) to unlock rewards\! ❤**
   - [Sponsors 🏆](#sponsors)
   - [Screenshot button](#screenshotbutton)
   - [Features](#features)
+  - [Save to server example](#server)
   - [Installation](#install)
   - [Motivation](#motivation)
   - [Browser support and limitations](#limitations)
@@ -117,16 +112,49 @@ The `screenshot()` function can be called any time inside the server portion of 
 
 - **Module support:** As an alternative to the `selector` argument, you can also use the `id` argument. For example, instead of using `screenshot(selector="#myplot")`, you could use `screenshot(id="myplot")`. The advantage with using an ID directly is that the `id` parameter is module-aware, so even if you're taking a screenshot inside a Shiny module, you don't need to worry about namespacing.
 
+<h2 id="server">Save to server example</h2>
+
+The example below uses the `server_dir` parameter to save the screenshot to the server instead of downloading it to the user's browser. As proof that the file was saved on the server-side, a preview of the file is shown. You can change the `download = FALSE` parameter to `TRUE` if you want to both save to the server and also download the file.
+
+```r
+library(shiny)
+library(shinyscreenshot)
+
+ui <- fluidPage(
+  plotly::plotlyOutput("plot"),
+  screenshotButton(download = FALSE, server_dir = tempdir(), id = "plot"),
+  h2("Preview of screenshot:"),
+  imageOutput("preview", width = "50%", height = "200")
+)
+
+server <- function(input, output) {
+  output$plot <- plotly::renderPlotly({
+    plotly::plot_ly(mtcars, x = ~wt, y = ~mpg)
+  })
+  
+  output$preview <- renderImage(deleteFile = TRUE, {
+    req(input$shinyscreenshot) 
+    list(src = input$shinyscreenshot, width = "100%", height = "100%")
+  })
+}
+
+shinyApp(ui, server)
+```
+
 <h2 id="install">Installation</h2>
 
-To install the stable CRAN version:
+**For most users:** To install the stable CRAN version:
 
-    install.packages("shinyscreenshot")
+```r
+install.packages("shinyscreenshot")
+```
 
-To install the latest development version from GitHub:
+**For advanced users:** To install the latest development version from GitHub:
 
-    install.packages("remotes")
-    remotes::install_github("daattali/shinyscreenshot")
+```r
+install.packages("remotes")
+remotes::install_github("daattali/shinyscreenshot")
+```
 
 <h2 id="motivation">Motivation</h2>
 
@@ -136,7 +164,7 @@ After seeing many people asking about this, one day my R-friend Eric Nantz [aske
 
 <h2 id="limitations">Browser support and limitations</h2>
 
-The screenshots are powered by the 'html2canvas' JavaScript library. They do not always produce perfect screenshots, please refer to 'html2canvas' for more information about the limitations.
+The screenshots are powered by the 'html2canvas' JavaScript library. They do not always produce perfect screenshots, please refer to 'html2canvas' for more information about the limitations. Leaflet maps often have trouble with screenshots, and unfortunately this is a known issue that canont be fixed.
 
 The JavaScript libraries used in this package may not be supported by all browsers. {shinyscreenshot} should work on Chrome, Firefox, Edge, Chrome on Android, Safari on iPhone (and probably more that I haven't tested). It does not work in Internet Explorer.
 
